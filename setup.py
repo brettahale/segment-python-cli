@@ -26,7 +26,7 @@ setup(
         # called and where it will look for it. Please edit to suit
         # your needs
         'console_scripts': [
-            'segapi=app:cli'
+            'segapi=cli:cli'
         ]
     },
     include_package_data=True,
