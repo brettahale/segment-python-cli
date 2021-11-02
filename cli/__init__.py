@@ -9,6 +9,7 @@ from .segment.segment_config_api import SegmentConfigApi
 
 from .commands.sources import sources
 from .commands.destinations import destinations
+from .commands.functions import functions
 
 __author__ = """Brett Hale"""
 __email__ = 'bhale@goodrx.com'
@@ -32,5 +33,6 @@ def cli(ctx, token, workspace, format, path):
 # Add commands
 cli.add_command(sources)
 cli.add_command(destinations)
+cli.add_command(functions)
 # cli.add_command(commands.sources_to_yaml)
 # cli.add_command(commands.functions_to_yaml)

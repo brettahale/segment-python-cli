@@ -17,7 +17,7 @@ setup(
     description="CLI tool segment config api",
     long_description=readme,
     author="Brett Hale",
-    author_email='bhale@du.edu',
+    author_email='brett@straightfromhale.com',
     packages=find_packages(),
     entry_points={
         # ATTENTION! ACHTUNG! ATENCIÓN!

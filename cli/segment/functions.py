@@ -2,10 +2,10 @@ from .api_model import ApiModel
 
 class Functions(ApiModel):
     def __init__(self, workspace):
-        super().__init__(workspace.api, f'{workspace.model_path}/sources')
+        super().__init__(workspace.api, f'{workspace.model_path}/functions')
 
-    def source(self, name):
-        return Source(self, name)
+    def function(self, name):
+        return Function(self, name)
 
     def create(self, payload):
         return self.send_request('POST', payload=payload)
@@ -17,7 +17,7 @@ class Functions(ApiModel):
 
 class Function(ApiModel):
     def __init__(self, functions, name):
-        super().__init__(sources.api, f'{sources.model_path}/{name}')
+        super().__init__(functions.api, f'{functions.model_path}/{name}')
 
     @property
     def destinations(self):
