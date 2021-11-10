@@ -1,4 +1,5 @@
 from .api_model import ApiModel
+from .filters import Filters
 
 class Destinations(ApiModel):
     def __init__(self, source):
@@ -19,11 +20,11 @@ class Destination(ApiModel):
         super().__init__(destinations.api, f'{destinations.model_path}/{name}')
 
     @property
-    def destination_filters(self):
-        return DestinationFiltersModel(self)
+    def filters(self):
+        return Filters(self)
 
-    def destination_filter(self, name):
-        self.destination_filters.destination_filter(name)
+    def filter(self, name):
+        self.filters.filter(name)
 
 #     @property
 #     def event_delivery_metrics(self):

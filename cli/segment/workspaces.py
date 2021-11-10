@@ -1,6 +1,7 @@
 from .api_model import ApiModel
 from .sources import Source, Sources
 from .functions import Function, Functions
+from .regulations import Regulations
 
 class Workspaces(ApiModel):
     def __init__(self, api):
@@ -29,8 +30,12 @@ class Workspace(ApiModel):
     def functions(self):
         return Functions(self)
 
-    def functions(self, name):
+    def function(self, name):
         return self.functions.function(name)
+
+    @property
+    def regulations(self):
+        return Regulations(self)
 
 #     @property
 #     def tracking_plans(self):
@@ -39,9 +44,7 @@ class Workspace(ApiModel):
 #     def tracking_plan(self, plan_id):
 #         return self.tracking_plans.tracking_plan(plan_id)
 #
-#     @property
-#     def regulations(self):
-#         return Regulations(self)
+
 #
 #     def regulation(self, regulation_id):
 #         return self.regulations().regulation(regulation_id)

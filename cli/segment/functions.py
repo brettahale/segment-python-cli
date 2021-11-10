@@ -10,36 +10,23 @@ class Functions(ApiModel):
     def create(self, payload):
         return self.send_request('POST', payload=payload)
 
-    def list(self, page_size=None, page_token=None):
+    def list(self, function_type='SOURCE', page_size=None, page_token=None):
         return self.send_request('GET',
-            params={'page_size': page_size, 'page_token': page_token})
+            params={'type':function_type, 'page_size': page_size, 'page_token': page_token})
 
 
 class Function(ApiModel):
     def __init__(self, functions, name):
         super().__init__(functions.api, f'{functions.model_path}/{name}')
 
-    @property
-    def destinations(self):
-        return Destinations(self)
-
-    def destination(self, name):
-        return self.destinations.destination(name)
-
-    @property
-    def regulations(self):
-        return SourceRegulationsModel(self)
+    def delete(self, name):
+        return self.send_request('DELETE')
 
     def get(self):
         return self.send_request('GET')
 
-    def delete(self, name):
+    def update(self, payload):
+        return self.send_request('PATCH', payload=payload)
+
+    def delete(self,name):
         return self.send_request('DELETE')
-
-    def get_schema_config(self):
-        path = f'schema-config'
-        return self.send_request('GET', path)
-
-    def update_schema_config(self, payload):
-        path = f'schema-config'
-        return self.send_request('PATCH', path, payload=payload)
