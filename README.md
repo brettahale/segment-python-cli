@@ -9,14 +9,16 @@ Install:
 
 Design:
     
-    segapi -w <workspace> sources --list,-ls
-    segapi -w <workspace> sources --get,-g <source_name> 
-    segapi -w <workspace> destinations --list,-ls <source_name>
-    segapi -w <workspace> destinations --get,-g <source_name> <destination_name>
-    segapi -w <workspace> filters --list,-ls <source_name> <destination_name>
-    segapi -w <workspace> filters --get,-g <source_name> <destination_name> <filter_name>
-    segapi -w <workspace> functions --list,-ls [--source,-src --destination,-dst]
-    segapi -w <workspace> functions --get,-g <function_id>
+    segapi -w <workspace> sources list
+    segapi -w <workspace> sources get <source_name> 
+    segapi -w <workspace> destinations list <source_name>
+    segapi -w <workspace> destinations get <source_name> <destination_name>
+    segapi -w <workspace> filters list <source_name> <destination_name>
+    segapi -w <workspace> filters get <source_name> <destination_name> <filter_name>
+    segapi -w <workspace> functions list [--source,-src --destination,-dst]
+    segapi -w <workspace> functions get <function_id>
+    segapi -w <workspace> regulations create <file_name with userIds>
+    segapi -w <workspace> regulations list
 
 
 Uses:
