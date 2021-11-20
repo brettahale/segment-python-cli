@@ -4,6 +4,7 @@ from .workspaces import Workspaces
 from .models import Functions
 from .sources import Sources
 
+# requests.defaults.defaults['strict_mode'] = True
 
 class SegmentConfigApi():
     def __init__(self, access_token=None, workspace=None, base_url='https://platform.segmentapis.com/', version='v1beta'):
@@ -21,10 +22,14 @@ class SegmentConfigApi():
             'Authorization': f'Bearer {self.access_token}',
             'Content-Type': 'application/json'
         }
-        response = requests.request(verb, url,
-            headers=headers,
-            data=json.dumps(payload),
-            params=params)
+
+        if verb.lower() == 'post':
+            response = requests.post(url, headers=headers, json=payload, params=params)
+        else:
+            response = requests.request(verb, url,
+                headers=headers,
+                json=payload,
+                params=params)
 
         response.raise_for_status()
         return response.json()
