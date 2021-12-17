@@ -35,7 +35,7 @@ def list(ctx):
 @click.pass_context
 def get(ctx, regulation_id):
     regulation_data = ctx.obj['regulations'].regulation(regulation_id).get()
-    click.echo(regulation_data)
+    click.echo(json.dumps(regulation_data))
 
 @regulations.command()
 @click.argument('regulation_id')
