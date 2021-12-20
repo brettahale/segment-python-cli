@@ -23,16 +23,19 @@ class SegmentConfigApi():
             'Content-Type': 'application/json'
         }
 
-        if verb.lower() == 'post':
-            response = requests.post(url, headers=headers, json=payload, params=params)
-        else:
-            response = requests.request(verb, url,
-                headers=headers,
-                json=payload,
-                params=params)
+        if hasattr(requests, verb.lower()):
+            method_verb = getattr(requests, verb.lower())
+            response = method_verb(url,
+                            headers=headers,
+                            json=payload,
+                            params=params)
+            response.raise_for_status()
+            return response.json()
 
-        response.raise_for_status()
-        return response.json()
+        else:
+            return {"error": {"message": f"Method not support by python requests:: {verb.lower()}"}}
+
+
 
     @property
     def integrations_catalog(self):
