@@ -4,10 +4,8 @@ from .workspaces import Workspaces
 from .models import Functions
 from .sources import Sources
 
-# requests.defaults.defaults['strict_mode'] = True
-
 class SegmentConfigApi():
-    def __init__(self, access_token=None, workspace=None, base_url='https://platform.segmentapis.com/', version='v1beta'):
+    def __init__(self, access_token=None, workspace=None, base_url='https://platform.segmentapis.com', version='v1beta'):
         self.access_token = access_token
 #         self.workspace = workspace
         self.base_url = base_url
@@ -23,18 +21,15 @@ class SegmentConfigApi():
             'Content-Type': 'application/json'
         }
 
-        if hasattr(requests, verb.lower()):
-            method_verb = getattr(requests, verb.lower())
-            response = method_verb(url,
-                            headers=headers,
-                            json=payload,
-                            params=params)
-            response.raise_for_status()
-            return response.json()
+        req_config = {'headers': headers, 'params': params}
+        if payload is not None:
+            req_config['data'] = payload
 
-        else:
-            return {"error": {"message": f"Method not support by python requests:: {verb.lower()}"}}
+        print(verb, url, req_config)
+        response = requests.request(verb, url, **req_config)
 
+        response.raise_for_status()
+        return response.json()
 
 
     @property

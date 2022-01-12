@@ -23,7 +23,7 @@ def regulations(ctx):
 @click.pass_context
 def create(ctx, user_list):
     users = [line.strip().decode() for line in user_list]
-    click.echo(json.dumps(ctx.obj['regulations'].create(get_delete_payload(users))))
+    click.echo(ctx.obj['regulations'].create(json.dumps(get_delete_payload(users))))
 
 @regulations.command()
 @click.pass_context

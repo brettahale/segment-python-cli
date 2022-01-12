@@ -7,12 +7,12 @@ class ApiModel():
         self.api = api
         self.model_path = model_path
 
-    def send_request(self, method: str, path='', path_suffix='', **kwargs):
+    def send_request(self, verb: str, path='', path_suffix='', **kwargs):
         if path_suffix:
             path = f'{self.model_path}{path_suffix}'
         else:
-            path = f'{self.model_path}/{path}'
-        return self.api.send_request(method, path, **kwargs)
+            path = f'{self.model_path}{path}'
+        return self.api.send_request(verb, path, **kwargs)
 
     def write_to_file(self, path=[], data=None):
         #should merge existing file?

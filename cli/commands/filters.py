@@ -25,3 +25,13 @@ def list(ctx, source_name, destination_name):
 def get(ctx, source_name, destination_name, id):
     ctx.obj['filters'] = ctx.obj['workspace'].sources(source_name).destinations(destination_name).filters
     click.echo(json.dumps(ctx.obj['filters'].filter(id).get()))
+
+
+@filters.command()
+@click.argument('source_name')
+@click.argument('destination_name')
+@click.argument('payload')
+@click.pass_context
+def get(ctx, source_name, destination_name, id):
+    ctx.obj['filters'] = ctx.obj['workspace'].sources(source_name).destinations(destination_name).filters
+    click.echo(json.dumps(ctx.obj['filters'].filter)
