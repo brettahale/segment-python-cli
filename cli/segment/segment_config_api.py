@@ -25,7 +25,7 @@ class SegmentConfigApi():
         if payload is not None:
             req_config['data'] = payload
 
-        print(verb, url, req_config)
+        print(verb, url, json.dumps(req_config['data']))
         response = requests.request(verb, url, **req_config)
 
         response.raise_for_status()
